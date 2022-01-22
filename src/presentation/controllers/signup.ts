@@ -2,10 +2,10 @@ import { SignupRequest } from '../dtos/signup.req.dto'
 import { MissingParamError } from '../errors/missing-param.error'
 import { badRequest } from '../helpers/http.helpers'
 import { IController } from '../protocols/controller'
-import { HttpRequest, HttpResponse } from '../protocols/http'
+import { IHttpRequest, IHttpResponse } from '../protocols/http'
 
 export class SignUpController implements IController {
-  handle (httpRequest: HttpRequest): HttpResponse {
+  handle (httpRequest: IHttpRequest): IHttpResponse {
     const requiredFields = ['name', 'email', 'password', 'passwordConfirmation']
     const body = httpRequest.body as SignupRequest
     if (!body) {
