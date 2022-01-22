@@ -1,6 +1,5 @@
 import { SignupRequest } from '../dtos/signup.req.dto'
-import { InvalidParamError } from '../errors/invalid-param.error'
-import { MissingParamError } from '../errors/missing-param.error'
+import { InvalidParamError, MissingParamError } from '../errors'
 import { badRequest, internalServerError } from '../helpers/http.helpers'
 import { IController } from '../protocols/controller'
 import { IHttpRequest, IHttpResponse } from '../protocols/http'
