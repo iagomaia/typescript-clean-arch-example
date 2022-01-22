@@ -1,8 +1,7 @@
 import { SignupRequest } from '../dtos/signup.req.dto'
-import { InternalServerError } from '../errors/internal-server.error'
 import { InvalidParamError } from '../errors/invalid-param.error'
 import { MissingParamError } from '../errors/missing-param.error'
-import { badRequest } from '../helpers/http.helpers'
+import { badRequest, internalServerError } from '../helpers/http.helpers'
 import { IController } from '../protocols/controller'
 import { IHttpRequest, IHttpResponse } from '../protocols/http'
 import { IValidator } from '../protocols/validator'
@@ -34,10 +33,7 @@ export class SignUpController implements IController {
       }
     } catch (error) {
       console.error(error)
-      return {
-        statusCode: 500,
-        body: new InternalServerError()
-      }
+      return internalServerError()
     }
   }
 }
