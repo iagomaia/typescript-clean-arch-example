@@ -4,11 +4,15 @@ import { HttpRequest, HttpResponse } from '../protocols/http'
 
 export class SignUpController {
   handle (httpRequest: HttpRequest<any>): HttpResponse<any> {
-    if (!httpRequest.body.name) {
-      return badRequest(new MissingParamError('name'))
+    const requiredFields = ['name', 'email', 'password', 'passwordConfirmation']
+    const { body } = httpRequest
+    for (const field of requiredFields) {
+      if (!body[field]) {
+        return badRequest(new MissingParamError(field))
+      }
     }
-    if (!httpRequest.body.email) {
-      return badRequest(new MissingParamError('email'))
+    if (body.password !== body.passwordConfirmation) {
+      return badRequest(new Error('Passwords don\'t match'))
     }
     return {
       statusCode: 200,
