@@ -1,9 +1,7 @@
 import { SignupRequest } from '../dtos/signup.req.dto'
 import { InvalidParamError, MissingParamError } from '../errors'
 import { badRequest, internalServerError } from '../helpers/http.helpers'
-import { IController } from '../protocols/controller'
-import { IHttpRequest, IHttpResponse } from '../protocols/http'
-import { IValidator } from '../protocols/validator'
+import { IController, IValidator, IHttpRequest, IHttpResponse } from '../protocols'
 
 export class SignUpController implements IController {
   constructor (private readonly emailValidator: IValidator) { }
