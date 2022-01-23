@@ -1,8 +1,6 @@
 import { SignUpController } from './signup'
-import { MissingParamError, InternalServerError, InvalidParamError } from '../errors'
-import { IValidator } from '../protocols'
-import { AddAccountDto, IAddUser } from '../../domain/useCases/add-user'
-import { User } from '../../domain/models/user'
+import { MissingParamError, InternalServerError, InvalidParamError } from '../../errors'
+import { IAddUser, IValidator, User, AddAccountDto } from './signup.protocols'
 
 interface SutTypes {
   sut: SignUpController
