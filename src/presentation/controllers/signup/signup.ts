@@ -31,7 +31,7 @@ export class SignUpController implements IController {
       })
       return {
         statusCode: 200,
-        body: 'Ok'
+        body: user
       }
     } catch (error) {
       console.error(error)
