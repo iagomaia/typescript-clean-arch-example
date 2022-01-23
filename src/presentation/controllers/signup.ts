@@ -19,7 +19,7 @@ export class SignUpController implements IController {
         }
       }
       if (body.password !== body.passwordConfirmation) {
-        return badRequest(new Error('Passwords don\'t match'))
+        return badRequest(new InvalidParamError('passwordConfirmation', 'Passwords don\'t match'))
       }
       if (!this.emailValidator.isValid(body.email ?? '')) {
         return badRequest(new InvalidParamError('email', 'invalid email address format'))

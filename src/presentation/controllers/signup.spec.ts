@@ -80,7 +80,7 @@ describe('SignUp Controller', () => {
     }
     const httpResponse = sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Passwords don\'t match'))
+    expect(httpResponse.body).toEqual(new InvalidParamError('passwordConfirmation', 'Passwords don\'t match'))
   })
 
   test('Should return 400 if invalid email is provided', () => {
