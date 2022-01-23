@@ -8,7 +8,7 @@ export class SignUpController implements IController {
     private readonly addUser: IAddUser
   ) { }
 
-  handle (httpRequest: IHttpRequest): IHttpResponse {
+  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const requiredFields = ['name', 'email', 'password', 'passwordConfirmation']
       const body = httpRequest.body
@@ -24,7 +24,7 @@ export class SignUpController implements IController {
       if (!this.emailValidator.isValid(email ?? '')) {
         return badRequest(new InvalidParamError('email', 'invalid email address format'))
       }
-      const user = this.addUser.add({
+      const user = await this.addUser.add({
         name,
         email,
         password
