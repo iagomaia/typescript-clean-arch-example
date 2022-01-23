@@ -187,7 +187,7 @@ describe('SignUp Controller', () => {
     })
   })
 
-  test('Should return 200 if valid data is provided', () => {
+  test('Should return 201 if valid data is provided', () => {
     const { sut } = makeSut()
     const httpRequest = {
       body: {
@@ -198,7 +198,7 @@ describe('SignUp Controller', () => {
       }
     }
     const response = sut.handle(httpRequest)
-    expect(response.statusCode).toBe(200)
+    expect(response.statusCode).toBe(201)
     expect(response.body).toEqual({
       id: 'someId',
       name: 'mock name',

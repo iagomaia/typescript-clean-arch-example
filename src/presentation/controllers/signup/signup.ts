@@ -1,6 +1,6 @@
 import { IAddUser, IController, IValidator, IHttpRequest, IHttpResponse } from './signup.protocols'
 import { InvalidParamError, MissingParamError } from '../../errors'
-import { badRequest, internalServerError } from '../../helpers/http.helpers'
+import { badRequest, created, internalServerError } from '../../helpers/http.helpers'
 
 export class SignUpController implements IController {
   constructor (
@@ -29,10 +29,7 @@ export class SignUpController implements IController {
         email,
         password
       })
-      return {
-        statusCode: 200,
-        body: user
-      }
+      return created(user)
     } catch (error) {
       console.error(error)
       return internalServerError()
