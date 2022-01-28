@@ -93,4 +93,21 @@ describe('DbAddUser UseCase', () => {
       password: 'hashed_password'
     })
   })
+  test('Should throw if repository throws', async () => {
+    const {
+      sut,
+      addUserRepositoryStub
+    } = makeSut()
+    jest.spyOn(addUserRepositoryStub, 'add')
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      )
+    const userDto = {
+      name: 'Valid Name',
+      email: 'valid_email@email.com',
+      password: 'valid_password'
+    }
+    const promise = sut.add(userDto)
+    await expect(promise).rejects.toThrow()
+  })
 })
