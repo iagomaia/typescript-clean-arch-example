@@ -1,6 +1,4 @@
-import { AddUserDto, IAddUser } from '../../../domain/use-cases/add-user'
-import { User } from '../../../domain/models/user'
-import { IEncrypter } from '../../protocols/encrypter'
+import { AddUserDto, IAddUser, User, IEncrypter } from './db-add-user.protocols'
 
 export class DbAddUser implements IAddUser {
   constructor (
