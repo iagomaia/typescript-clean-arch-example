@@ -1,18 +1,18 @@
-import { AddUserDto, IAddUser, User, IEncrypter } from './db-add-user.protocols'
+import { AddUserDto, IAddUser, IAddUserRepository, IEncrypter, User } from './db-add-user.protocols'
 
 export class DbAddUser implements IAddUser {
   constructor (
-    private readonly encrypter: IEncrypter
+    private readonly encrypter: IEncrypter,
+    private readonly addUserRepository: IAddUserRepository
   ) {
   }
 
   async add (userDto: AddUserDto): Promise<User> {
-    const hashedPassword = await this.encrypter.encrypt(userDto.password)
-    return await new Promise<User>(resolve => resolve({
-      id: '',
-      name: '',
-      email: '',
-      password: hashedPassword
-    }))
+    const password = await this.encrypter.encrypt(userDto.password)
+    const user = await this.addUserRepository
+      .add(
+        Object.assign({}, userDto, { password })
+      )
+    return user
   }
 }
