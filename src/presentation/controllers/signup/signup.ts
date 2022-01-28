@@ -1,4 +1,4 @@
-import { IAddUser, IController, IValidator, IHttpRequest, IHttpResponse } from './signup.protocols'
+import { IAddUser, IController, IHttpRequest, IHttpResponse, IValidator } from './signup.protocols'
 import { InvalidParamError, MissingParamError } from '../../errors'
 import { badRequest, created, internalServerError } from '../../helpers/http.helpers'
 
@@ -21,7 +21,7 @@ export class SignUpController implements IController {
       if (password !== passwordConfirmation) {
         return badRequest(new InvalidParamError('passwordConfirmation', 'Passwords don\'t match'))
       }
-      if (!this.emailValidator.isValid(email ?? '')) {
+      if (!this.emailValidator.isValid(email)) {
         return badRequest(new InvalidParamError('email', 'invalid email address format'))
       }
       const user = await this.addUser.add({
