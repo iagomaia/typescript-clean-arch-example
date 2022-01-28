@@ -9,7 +9,7 @@ export default {
   roots: [
     '<rootDir>/src'
   ],
-  presets: '@shelf/jest-mongodb',
+  preset: '@shelf/jest-mongodb',
   transform: {
     '.+\\.ts$': 'ts-jest'
   }
