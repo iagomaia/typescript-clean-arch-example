@@ -1,6 +1,6 @@
 import { SignUpController } from './signup'
-import { MissingParamError, InternalServerError, InvalidParamError } from '../../errors'
-import { IAddUser, IValidator, User, AddAccountDto } from './signup.protocols'
+import { InternalServerError, InvalidParamError, MissingParamError } from '../../errors'
+import { AddUserDto, IAddUser, IValidator, User } from './signup.protocols'
 
 interface SutTypes {
   sut: SignUpController
@@ -10,7 +10,7 @@ interface SutTypes {
 
 const makeAddAccount = (): IAddUser => {
   class AddAccountStub implements IAddUser {
-    async add (account: AddAccountDto): Promise<User> {
+    async add (account: AddUserDto): Promise<User> {
       const accountMock = {
         id: 'someId',
         name: 'mock name',

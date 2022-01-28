@@ -1,11 +1,11 @@
 import { User } from '../models/user'
 
-export interface AddAccountDto {
+export interface AddUserDto {
   name: string
   email: string
   password: string
 }
 
 export interface IAddUser {
-  add: (account: AddAccountDto) => Promise<User>
+  add: (account: AddUserDto) => Promise<User>
 }
