@@ -7,7 +7,8 @@
     "test": "jest --passWithNoTests --silent --noStackTrace --coverage",
     "test:verbose": "jest --passWithNoTests",
     "test:unit": "yarn test --watch",
-    "test:staged": "yarn test"
+    "test:staged": "yarn test",
+    "prepare": "husky-install"
   },
   "keywords": [],
   "author": "",
