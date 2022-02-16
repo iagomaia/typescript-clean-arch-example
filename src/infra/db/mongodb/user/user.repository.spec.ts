@@ -11,6 +11,10 @@ describe('UserRepository for Mongo', () => {
     await MongoHelper.disconnect()
   })
 
+  beforeEach(async () => {
+    MongoHelper.collection('users').deleteMany({})
+  })
+
   const makeSut = () => {
     return new UserMongoRepository()
   }
