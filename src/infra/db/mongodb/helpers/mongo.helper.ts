@@ -1,7 +1,7 @@
-import { MongoClient } from "mongodb"
+import { Collection, MongoClient } from "mongodb"
 
 export const MongoHelper: IMongoHelper = {
-  mongoClient: undefined,
+  mongoClient: null,
 
   async connect (uri: string) {
     this.mongoClient = await MongoClient.connect(process.env.MONGO_URL ?? '')
@@ -9,11 +9,16 @@ export const MongoHelper: IMongoHelper = {
 
   async disconnect () {
     await this.mongoClient.close()
+  },
+
+  collection (name: string): Collection {
+    return this.mongoClient.db().collection(name)
   }
 }
 
 interface IMongoHelper {
-  mongoClient?: MongoClient
+  mongoClient: MongoClient | null
   connect: (uri: string) => Promise<void>
   disconnect: () => Promise<void>
+  collection: (name: string) => Collection
 }
