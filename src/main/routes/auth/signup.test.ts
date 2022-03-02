@@ -13,7 +13,7 @@ describe('Signup Route', () => {
   beforeEach(async () => {
     MongoHelper.collection('users').deleteMany({})
   })
-  
+
   test('Should return an User on success', async () => {
     const response = await app.inject({
       method: "post",
@@ -25,6 +25,7 @@ describe('Signup Route', () => {
         passwordConfirmation: 'user@test123'
       },
     })
+    console.log(response)
 
     expect(response.statusCode).toBe(201)
   })

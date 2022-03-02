@@ -15,7 +15,7 @@ const makeAddUserRepository = (): IAddUserRepository => {
   class AddUserRepositoryStub implements IAddUserRepository {
     async add (addUserDto: AddUserDto): Promise<User> {
       const fakeUser = {
-        id: 'valid_id',
+        _id: 'valid_id',
         name: 'Valid Name',
         email: 'valid_email@email.com',
         password: 'hashed_password'
@@ -121,7 +121,7 @@ describe('DbAddUser UseCase', () => {
     }
     const user = await sut.add(userDto)
     expect(user).toEqual({
-      id: 'valid_id',
+      _id: 'valid_id',
       name: 'Valid Name',
       email: 'valid_email@email.com',
       password: 'hashed_password'

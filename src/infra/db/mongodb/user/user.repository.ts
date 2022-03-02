@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import { IAddUserRepository } from "../../../../data/protocols/add-user.repository";
 import { User } from "../../../../domain/models/user";
 import { AddUserDto } from "../../../../domain/use-cases/add-user";
@@ -9,7 +8,7 @@ export class UserMongoRepository implements IAddUserRepository {
     const userCollection = MongoHelper.collection('users');
     const result = await userCollection.insertOne(dto)
     return {
-      id: result.insertedId.toString(),
+      _id: result.insertedId.toString(),
       ...dto
     }
   }

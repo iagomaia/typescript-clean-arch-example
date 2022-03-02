@@ -12,7 +12,7 @@ const makeAddAccount = (): IAddUser => {
   class AddAccountStub implements IAddUser {
     async add (account: AddUserDto): Promise<User> {
       const accountMock = {
-        id: 'someId',
+        _id: 'someId',
         name: 'mock name',
         email: 'validemail@email.com',
         password: 'mock pasword'
@@ -200,7 +200,7 @@ describe('SignUp Controller', () => {
     const response = await sut.handle(httpRequest)
     expect(response.statusCode).toBe(201)
     expect(response.body).toEqual({
-      id: 'someId',
+      _id: 'someId',
       name: 'mock name',
       email: 'validemail@email.com',
       password: 'mock pasword'
