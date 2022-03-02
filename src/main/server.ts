@@ -1,8 +1,6 @@
-import Fastify from 'fastify'
+import app from './config/app'
 
-const fastify = Fastify({logger: true})
-
-fastify.listen(5050)
+app.listen(5050)
   .then(() => {
     console.log("Server listening on http://localhost:5050/")
   })
