@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  db:
+    image: mongo:5.0.3
+    restart: on-failure
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: dev
+      MONGO_INITDB_ROOT_PASSWORD: devpw
+    volumes:
+      - mongodb-data:/data/db
+
+volumes:
+  mongodb-data:
