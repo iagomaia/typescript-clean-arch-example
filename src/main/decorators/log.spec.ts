@@ -17,15 +17,19 @@ const makeReq = (): IHttpRequest => {
   return req
 }
 
+const makeResp = (): IHttpResponse => {
+  return {
+    statusCode: 200,
+    body: {
+      name: 'any name'
+    }
+  }
+}
+
 const makeController = (): IController => {
   class ControllerStub implements IController {
     async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
-      const httpResponse = {
-        statusCode: 200,
-        body: {
-          name: 'any name'
-        }
-      }
+      const httpResponse = makeResp()
       return new Promise(resolve => resolve(httpResponse))
     }
   }
@@ -40,6 +44,7 @@ const makeSut = (): SutType => {
     controllerStub
   }
 }
+
 describe('Log Controller Decorator', () => {
   test('Should call controller handle', async () => {
     const req = makeReq()
@@ -47,5 +52,12 @@ describe('Log Controller Decorator', () => {
     const handleSpy = jest.spyOn(controllerStub, 'handle')
     await sut.handle(req)
     expect(handleSpy).toHaveBeenCalledWith(req)
+  })
+
+  test('Should return the same result of the controller', async () => {
+    const { sut } = makeSut()
+    const req = makeReq()
+    const resp = await sut.handle(req)
+    expect(resp).toEqual(makeResp())
   })
 })
