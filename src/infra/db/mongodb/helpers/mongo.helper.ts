@@ -1,7 +1,7 @@
 import { Collection, MongoClient } from "mongodb"
 
 export const MongoHelper: IMongoHelper = {
-  mongoClient: null,
+  mongoClient: null as unknown as MongoClient,
 
   async connect (uri: string = process.env.MONGO_URL ?? "") {
     this.mongoClient = await MongoClient.connect(uri)
