@@ -12,7 +12,8 @@ describe('UserRepository for Mongo', () => {
   })
 
   beforeEach(async () => {
-    MongoHelper.collection('users').deleteMany({})
+    const userCollection = await MongoHelper.collection('users')
+    userCollection.deleteMany({})
   })
 
   const makeSut = () => {

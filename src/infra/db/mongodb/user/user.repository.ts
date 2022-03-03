@@ -5,7 +5,7 @@ import { MongoHelper } from "../helpers/mongo.helper";
 
 export class UserMongoRepository implements IAddUserRepository {
   async add (dto: AddUserDto): Promise<User> {
-    const userCollection = MongoHelper.collection('users');
+    const userCollection = await MongoHelper.collection('users');
     const result = await userCollection.insertOne(dto)
     return {
       _id: result.insertedId.toString(),
