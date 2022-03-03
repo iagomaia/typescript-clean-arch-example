@@ -31,8 +31,7 @@ export class SignUpController implements IController {
       })
       return created(user)
     } catch (error) {
-      console.error(error)
-      return internalServerError()
+      return internalServerError(error)
     }
   }
 }
